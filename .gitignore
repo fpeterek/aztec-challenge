@@ -2,4 +2,7 @@
 .idea
 .DS_Store
 build
+run
+clean
+build_app
 
