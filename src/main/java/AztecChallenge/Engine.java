@@ -9,7 +9,19 @@ public class Engine {
 
     }
 
-    private void handleGravity() {
+    private void handleMovement() {
+
+    }
+
+    private void handleCollisions() {
+
+    }
+
+    protected void render() {
+
+    }
+
+    protected void tick() {
 
     }
 

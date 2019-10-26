@@ -2,9 +2,8 @@ package AztecChallenge.Interfaces;
 
 import javafx.geometry.Rectangle2D;
 
-public interface Hittable {
+public interface Hittable extends Hitboxed {
 
-    Rectangle2D hitbox();
     void onHit();
 
 }
