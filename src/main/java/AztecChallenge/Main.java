@@ -1,31 +1,81 @@
 package AztecChallenge;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
 
+    private Stage mainMenu;
+    private VBox vbox;
+    private List<Button> buttons;
+    private BorderPane root;
+
     public static void main(String[] args) {
         launch(args);
-        System.out.println("Hello, World!");
+    }
+
+    private void runGame() {
+
+    }
+
+    private void createButton(String label, Runnable fun) {
+
+        Button button = new Button();
+        button.setOnAction(event -> fun.run());
+        button.setText(label);
+        button.setMinWidth(250);
+        button.setMaxWidth(250);
+        buttons.add(button);
+
+    }
+
+    private void createButtons() {
+
+        buttons = new ArrayList<>();
+
+        createButton("Temple Assault", this::runGame);
+        createButton("Mountain Range", this::runGame);
+        createButton("Dungeon ", this::runGame);
+        createButton("Temple Assault", this::runGame);
+
+        vbox.getChildren().addAll(buttons);
+
+    }
+
+    private void initVBox() {
+        vbox = new VBox();
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setSpacing(10);
+    }
+
+    private void initRoot() {
+        root = new BorderPane();
+        root.setCenter(vbox);
     }
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Hello World!");
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(event -> System.out.println("Hello World!"));
 
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();
+        initVBox();
+        initRoot();
+        createButtons();
+
+        mainMenu = primaryStage;
+        mainMenu.setScene(new Scene(root, 800, 600));
+        mainMenu.show();
+
+
     }
+
 
 }
