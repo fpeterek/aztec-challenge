@@ -10,6 +10,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.ArcType;
 import javafx.stage.Stage;
 
@@ -29,12 +30,25 @@ public class RenderWindow {
 
         root = new Group();
         canvas = new Canvas(width, height);
+
+        stage.setScene(new Scene(root));
+        root.getChildren().add(canvas);
+
         gc = canvas.getGraphicsContext2D();
 
-        root.getChildren().add(canvas);
-        stage.setScene(new Scene(root));
+    }
 
+    public boolean isOpen() {
+        return stage != null;
+    }
 
+    public boolean isShown() {
+        return stage.isShowing();
+    }
+
+    public void close() {
+        stage.close();
+        stage = null;
     }
 
     public void onKeyPress(EventHandler<KeyEvent> handler) {
@@ -65,7 +79,7 @@ public class RenderWindow {
         stage.hide();
     }
 
-    public void drawShapes(GraphicsContext gc) {
+    public void drawShapes() {
         gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLUE);
         gc.setLineWidth(5);

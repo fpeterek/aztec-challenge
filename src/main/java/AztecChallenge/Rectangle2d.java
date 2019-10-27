@@ -21,6 +21,14 @@ public class Rectangle2d {
         return dim.y;
     }
 
+    public Vector2d position() {
+        return new Vector2d(pos);
+    }
+
+    public Vector2d size() {
+        return new Vector2d(dim);
+    }
+
     public boolean intersects(Rectangle2d rect) {
 
         boolean xMiss = rect.x() + rect.width() < x() || x() + width() < rect.x();
@@ -48,6 +56,11 @@ public class Rectangle2d {
     public Rectangle2d(Vector2d position, Vector2d size) {
         pos = new Vector2d(position);
         dim = new Vector2d(size);
+    }
+
+    public Rectangle2d(Rectangle2d orig) {
+        pos = new Vector2d(orig.pos);
+        dim = new Vector2d(orig.dim);
     }
 
 }

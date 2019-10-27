@@ -1,5 +1,6 @@
 package AztecChallenge;
 
+import AztecChallenge.TempleAssault.TempleAssault;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,8 +23,24 @@ public class Main extends Application {
         launch(args);
     }
 
-    private void runGame() {
+    private void runGame(Engine engine) {
+        engine.run();
+    }
 
+    private void notYetImplemented() {
+        System.out.println("Not yet implemented");
+    }
+
+    private void templeAssault() {
+        runGame(new TempleAssault());
+    }
+
+    private void hideMenu() {
+        mainMenu.hide();
+    }
+
+    private void showMenu() {
+        mainMenu.show();
     }
 
     private void createButton(String label, Runnable fun) {
@@ -37,14 +54,20 @@ public class Main extends Application {
 
     }
 
+    private void exit() {
+        mainMenu.close();
+        mainMenu = null;
+        System.exit(0);
+    }
+
     private void createButtons() {
 
         buttons = new ArrayList<>();
 
-        createButton("Temple Assault", this::runGame);
-        createButton("Mountain Range", this::runGame);
-        createButton("Dungeon ", this::runGame);
-        createButton("Temple Assault", this::runGame);
+        createButton("Temple Assault", this::templeAssault);
+        createButton("Mountain Range", this::notYetImplemented);
+        createButton("Dungeon ", this::notYetImplemented);
+        createButton("Exit", this::exit);
 
         vbox.getChildren().addAll(buttons);
 

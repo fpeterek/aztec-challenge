@@ -9,5 +9,9 @@ public interface Hitboxed {
     Rectangle2d hitbox();
     boolean hasMass();
 
+    default boolean intersects(Hitboxed obj) {
+        return obj.hitbox().intersects(hitbox());
+    }
+
 
 }
