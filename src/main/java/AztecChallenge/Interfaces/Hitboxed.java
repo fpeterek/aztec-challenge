@@ -1,12 +1,12 @@
 package AztecChallenge.Interfaces;
 
+import AztecChallenge.Rectangle2d;
 import AztecChallenge.Vector2d;
-import javafx.geometry.Rectangle2D;
 
 public interface Hitboxed {
 
     Vector2d position();
-    Rectangle2D hitbox();
+    Rectangle2d hitbox();
     boolean hasMass();
 
 

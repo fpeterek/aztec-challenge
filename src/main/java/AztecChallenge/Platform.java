@@ -1,13 +1,15 @@
 package AztecChallenge;
 
 import AztecChallenge.Interfaces.Hitboxed;
-import AztecChallenge.Interfaces.Renderable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
-public class Platform implements Hitboxed, Renderable {
+public class Platform extends Rectangle2d implements Hitboxed {
 
     private Vector2d pos;
+
+    public Platform(double x, double y, double width, double height) {
+        super(x, y, width, height);
+    }
 
     @Override
     public Vector2d position() {
@@ -15,17 +17,13 @@ public class Platform implements Hitboxed, Renderable {
     }
 
     @Override
-    public Rectangle2D hitbox() {
-        return null;
+    public Rectangle2d hitbox() {
+        return new Rectangle2d(1,1,1,1);
     }
 
     @Override
     public boolean hasMass() {
-        return false;
+        return true;
     }
 
-    @Override
-    public void render(GraphicsContext gc) {
-
-    }
 }
