@@ -1,4 +1,4 @@
-package AztecChallenge;
+package AztecChallenge.GameEngine.Utils;
 
 public class Vector2d {
 

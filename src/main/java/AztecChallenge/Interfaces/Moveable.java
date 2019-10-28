@@ -1,6 +1,6 @@
 package AztecChallenge.Interfaces;
 
-import AztecChallenge.Vector2d;
+import AztecChallenge.GameEngine.Utils.Vector2d;
 
 public interface Moveable extends Hitboxed {
 

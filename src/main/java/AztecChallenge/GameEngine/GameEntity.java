@@ -1,10 +1,12 @@
-package AztecChallenge;
+package AztecChallenge.GameEngine;
 
 import AztecChallenge.Interfaces.Hitboxed;
+import AztecChallenge.GameEngine.Utils.Rectangle2d;
+import AztecChallenge.GameEngine.Utils.Vector2d;
 
-public class Platform extends Rectangle2d implements Hitboxed {
+public class GameEntity extends Rectangle2d implements Hitboxed {
 
-    public Platform(double x, double y, double width, double height) {
+    public GameEntity(double x, double y, double width, double height) {
         super(x, y, width, height);
     }
 

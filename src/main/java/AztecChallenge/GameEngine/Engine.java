@@ -1,6 +1,8 @@
-package AztecChallenge;
+package AztecChallenge.GameEngine;
 
 import AztecChallenge.Interfaces.Renderable;
+import AztecChallenge.GameEngine.Platform.Platform;
+import AztecChallenge.GameEngine.Utils.RenderWindow;
 import javafx.animation.AnimationTimer;
 
 import java.util.ArrayList;
@@ -9,20 +11,32 @@ import java.util.List;
 public abstract class Engine {
 
     private RenderWindow window;
+    private boolean gravityOn = true;
+    private long lastTimeMeasured;
 
     protected List<Platform> platforms;
 
-    private long lastTimeMeasured;
-
-    protected Engine() {
+    protected Engine(int width, int height) {
         platforms = new ArrayList<>();
-        window = new RenderWindow(1600, 900);
+        window = new RenderWindow(width, height);
         lastTimeMeasured = System.currentTimeMillis();
         window.show();
     }
 
     protected void setWindowTitle(String title) {
         window.setTitle(title);
+    }
+
+    protected void enableGravity() {
+        gravityOn = true;
+    }
+
+    protected void disableGravity() {
+        gravityOn = false;
+    }
+
+    public boolean gravityEnabled() {
+        return gravityOn;
     }
 
     private void handleMovement() {

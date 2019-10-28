@@ -1,6 +1,7 @@
 package AztecChallenge;
 
-import AztecChallenge.TempleAssault.TempleAssault;
+import AztecChallenge.GameEngine.Engine;
+import AztecChallenge.Minigames.TempleAssault.TempleAssault;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

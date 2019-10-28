@@ -1,4 +1,4 @@
-package AztecChallenge;
+package AztecChallenge.GameEngine.Platform;
 
 import AztecChallenge.Interfaces.Renderable;
 import javafx.scene.canvas.GraphicsContext;

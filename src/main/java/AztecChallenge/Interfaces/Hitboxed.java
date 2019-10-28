@@ -1,7 +1,7 @@
 package AztecChallenge.Interfaces;
 
-import AztecChallenge.Rectangle2d;
-import AztecChallenge.Vector2d;
+import AztecChallenge.GameEngine.Utils.Rectangle2d;
+import AztecChallenge.GameEngine.Utils.Vector2d;
 
 public interface Hitboxed {
 
