@@ -43,6 +43,29 @@ public abstract class Engine {
                 }
             }
         });
+
+        window.onKeyRelease(new EventHandler<KeyEvent>()
+        {
+            public void handle(KeyEvent e)
+            {
+
+                String code = e.getCode().toString();
+
+                if (code.equals("W")) {
+                    player.onUpRelease();
+                }
+                if (code.equals("A")) {
+                    player.onLeftRelease();
+                }
+                if (code.equals("S")) {
+                    player.onDownRelease();
+                }
+                if (code.equals("D")) {
+                    player.onRightRelease();
+                }
+            }
+        });
+
     }
 
     protected Engine(int width, int height) {
@@ -101,6 +124,25 @@ public abstract class Engine {
         }
     }
 
+    private void movePlayer(double timeDelta) {
+
+        double dx = player.getForces().x * timeDelta * 100;
+        double dy = player.getForces().y * timeDelta * 100;
+
+        if (gravityOn) {
+            dy = 0;
+        }
+
+        player.move(dx, dy);
+
+    }
+
+    private void move(double timeDelta) {
+
+        movePlayer(timeDelta);
+
+    }
+
     private void render() {
 
         window.clear();
@@ -142,6 +184,7 @@ public abstract class Engine {
                 }
                 double timeDelta = measureTimeDelta() / 1000.f;
                 gravity(timeDelta);
+                move(timeDelta);
                 tick(timeDelta);
                 render();
             }

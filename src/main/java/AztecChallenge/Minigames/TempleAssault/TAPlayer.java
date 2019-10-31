@@ -9,6 +9,7 @@ public class TAPlayer extends Player implements Jumping {
 
     public TAPlayer(double x, double y, double width, double height) {
         super(x, y, width, height);
+        canPlayerJump = true;
     }
 
     @Override
@@ -23,14 +24,33 @@ public class TAPlayer extends Player implements Jumping {
 
     @Override
     public void onLeft() {
-
+        forces.x = -1;
     }
 
     @Override
     public void onRight() {
+        forces.x = 1;
+    }
+
+    @Override
+    public void onUpRelease() {
 
     }
 
+    @Override
+    public void onDownRelease() {
+
+    }
+
+    @Override
+    public void onLeftRelease() {
+        forces.x = 0;
+    }
+
+    @Override
+    public void onRightRelease() {
+        forces.x = 0;
+    }
 
     @Override
     public void canJump(boolean canObjectJump) {

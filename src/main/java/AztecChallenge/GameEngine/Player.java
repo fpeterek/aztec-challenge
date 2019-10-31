@@ -14,6 +14,10 @@ public abstract class Player extends GameEntity implements Renderable {
     public abstract void onLeft();
     public abstract void onRight();
 
+    public abstract void onUpRelease();
+    public abstract void onDownRelease();
+    public abstract void onLeftRelease();
+    public abstract void onRightRelease();
 
     public Player(double x, double y, double width, double height) {
         super(x, y, width, height);

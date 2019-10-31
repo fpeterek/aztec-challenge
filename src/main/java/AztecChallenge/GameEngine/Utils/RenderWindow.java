@@ -56,7 +56,7 @@ public class RenderWindow {
     }
 
     public void onKeyRelease(EventHandler<KeyEvent> handler) {
-        stage.getScene().setOnKeyPressed(handler);
+        stage.getScene().setOnKeyReleased(handler);
     }
 
     public void setTitle(String title) {
