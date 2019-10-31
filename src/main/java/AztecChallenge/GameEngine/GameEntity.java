@@ -6,8 +6,11 @@ import AztecChallenge.GameEngine.Utils.Vector2d;
 
 public class GameEntity extends Rectangle2d implements Hitboxed {
 
+    protected Vector2d forces;
+
     public GameEntity(double x, double y, double width, double height) {
         super(x, y, width, height);
+        forces = new Vector2d(0, 0);
     }
 
     @Override
@@ -23,6 +26,19 @@ public class GameEntity extends Rectangle2d implements Hitboxed {
     @Override
     public boolean hasMass() {
         return true;
+    }
+
+    public Vector2d getForces() {
+        return new Vector2d(forces);
+    }
+
+    public void setForces(Vector2d forces) {
+        this.forces = forces;
+    }
+
+    public void setForces(double fx, double fy) {
+        this.forces.x = fx;
+        this.forces.y = fy;
     }
 
 }

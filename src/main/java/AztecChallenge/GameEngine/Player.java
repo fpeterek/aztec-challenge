@@ -17,7 +17,7 @@ public abstract class Player extends GameEntity implements Renderable {
 
     public Player(double x, double y, double width, double height) {
         super(x, y, width, height);
-        color = new Color(255, 0, 0, 1);
+        color = new Color(1, 0, 0, 1);
     }
 
     @Override

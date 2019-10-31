@@ -1,9 +1,12 @@
 package AztecChallenge.GameEngine;
 
+import AztecChallenge.Interfaces.Jumping;
 import AztecChallenge.Interfaces.Renderable;
 import AztecChallenge.GameEngine.Platform.Platform;
 import AztecChallenge.GameEngine.Utils.RenderWindow;
 import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +17,39 @@ public abstract class Engine {
     private boolean gravityOn = true;
     private long lastTimeMeasured;
 
+    protected Player player;
     protected List<Platform> platforms;
+
+    private void setEventHandler() {
+
+        window.onKeyPress(new EventHandler<KeyEvent>()
+        {
+            public void handle(KeyEvent e)
+            {
+
+                String code = e.getCode().toString();
+
+                if (code.equals("W")) {
+                    player.onUp();
+                }
+                if (code.equals("A")) {
+                    player.onLeft();
+                }
+                if (code.equals("S")) {
+                    player.onDown();
+                }
+                if (code.equals("D")) {
+                    player.onRight();
+                }
+            }
+        });
+    }
 
     protected Engine(int width, int height) {
         platforms = new ArrayList<>();
         window = new RenderWindow(width, height);
         lastTimeMeasured = System.currentTimeMillis();
+        setEventHandler();
         window.show();
     }
 
@@ -47,6 +77,30 @@ public abstract class Engine {
 
     }
 
+    private void handleGravity(long timeDelta) {
+
+        player.move(0, player.getForces().y * timeDelta);
+        player.setForces(player.getForces().x, player.getForces().y += timeDelta / 1000.0);
+
+        for (Platform p  : platforms) {
+            if (p.intersects(player.hitbox())) {
+                player.move(0, p.y() - (player.y() + player.height()));
+                player.setForces(player.getForces().x, 0.01);
+                if (player instanceof Jumping) {
+                    ((Jumping) player).canJump(true);
+                }
+                break;
+            }
+        }
+
+    }
+
+    private void gravity(long timeDelta) {
+        if (gravityOn) {
+            handleGravity(timeDelta);
+        }
+    }
+
     protected void render() {
 
         window.clear();
@@ -57,7 +111,7 @@ public abstract class Engine {
             }
         }
 
-
+        window.render(player);
 
     }
 
@@ -86,7 +140,10 @@ public abstract class Engine {
                 if (!windowIsOpen()) {
                     this.stop();
                 }
-                tick(measureTimeDelta());
+                long timeDelta = measureTimeDelta();
+                gravity(timeDelta);
+                tick(timeDelta);
+                render();
             }
 
         }.start();

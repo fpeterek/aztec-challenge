@@ -14,6 +14,7 @@ public class TempleAssault extends Engine {
         enableGravity();
         setWindowTitle("Temple Assault");
         RectanglePlatform rp = new RectanglePlatform(0, 700, WIDTH, 50);
+        player = new TAPlayer(100, 500, 50, 100);
         rp.color = Color.BEIGE;
         platforms.add(rp);
     }
@@ -26,7 +27,7 @@ public class TempleAssault extends Engine {
     @Override
     protected void tick(long timedelta) {
 
-        render();
+
 
     }
 
