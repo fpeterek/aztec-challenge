@@ -25,7 +25,7 @@ public class TempleAssault extends Engine {
     }
 
     @Override
-    protected void tick(long timedelta) {
+    protected void tick(double timedelta) {
 
 
 

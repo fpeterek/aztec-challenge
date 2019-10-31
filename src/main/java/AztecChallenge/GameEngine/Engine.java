@@ -77,10 +77,10 @@ public abstract class Engine {
 
     }
 
-    private void handleGravity(long timeDelta) {
+    private void handleGravity(double timeDelta) {
 
-        player.move(0, player.getForces().y * timeDelta);
-        player.setForces(player.getForces().x, player.getForces().y += timeDelta / 1000.0);
+        player.move(0, player.getForces().y * timeDelta * 1000);
+        player.setForces(player.getForces().x, Math.min(player.getForces().y += timeDelta, 10));
 
         for (Platform p  : platforms) {
             if (p.intersects(player.hitbox())) {
@@ -95,7 +95,7 @@ public abstract class Engine {
 
     }
 
-    private void gravity(long timeDelta) {
+    private void gravity(double timeDelta) {
         if (gravityOn) {
             handleGravity(timeDelta);
         }
@@ -126,7 +126,7 @@ public abstract class Engine {
         return window.isOpen();
     }
 
-    protected abstract void tick(long deltaMS);
+    protected abstract void tick(double delta);
     protected abstract boolean isRunning();
 
     public void run() {
@@ -140,7 +140,7 @@ public abstract class Engine {
                 if (!windowIsOpen()) {
                     this.stop();
                 }
-                long timeDelta = measureTimeDelta();
+                double timeDelta = measureTimeDelta() / 1000.f;
                 gravity(timeDelta);
                 tick(timeDelta);
                 render();
