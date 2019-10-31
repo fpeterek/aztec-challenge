@@ -101,7 +101,7 @@ public abstract class Engine {
         }
     }
 
-    protected void render() {
+    private void render() {
 
         window.clear();
 
@@ -115,7 +115,7 @@ public abstract class Engine {
 
     }
 
-    protected long measureTimeDelta() {
+    private long measureTimeDelta() {
         long currTime = System.currentTimeMillis();
         long timeDelta = currTime - lastTimeMeasured;
         lastTimeMeasured = currTime;
