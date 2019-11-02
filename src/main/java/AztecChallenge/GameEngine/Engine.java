@@ -20,6 +20,14 @@ public abstract class Engine {
     protected Player player;
     protected List<Platform> platforms;
 
+    protected double width() {
+        return window.width();
+    }
+
+    protected double height() {
+        return window.height();
+    }
+
     private void setEventHandler() {
 
         window.onKeyPress(new EventHandler<KeyEvent>()
@@ -164,7 +172,7 @@ public abstract class Engine {
         return timeDelta;
     }
 
-    public boolean windowIsOpen() {
+    protected boolean windowIsOpen() {
         return window.isOpen();
     }
 
@@ -179,7 +187,7 @@ public abstract class Engine {
 
             @Override
             public void handle(long l) {
-                if (!windowIsOpen()) {
+                if (!windowIsOpen() || !isRunning()) {
                     this.stop();
                 }
                 double timeDelta = measureTimeDelta() / 1000.f;

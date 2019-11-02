@@ -29,6 +29,15 @@ public class Rectangle2d {
         return new Vector2d(dim);
     }
 
+    public void setSize(Vector2d size) {
+        dim = size;
+    }
+
+    public void setSize(double width, double height) {
+        dim.x = width;
+        dim.y = height;
+    }
+
     public boolean intersects(Rectangle2d rect) {
 
         boolean xMiss = rect.x() + rect.width() < x() || x() + width() < rect.x();

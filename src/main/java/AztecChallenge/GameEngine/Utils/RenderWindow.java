@@ -38,6 +38,14 @@ public class RenderWindow {
 
     }
 
+    public double width() {
+        return root.getScene().getWindow().getWidth();
+    }
+
+    public double height() {
+        return root.getScene().getWindow().getHeight();
+    }
+
     public boolean isOpen() {
         return stage != null;
     }

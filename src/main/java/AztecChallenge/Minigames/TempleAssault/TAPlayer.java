@@ -6,9 +6,14 @@ import AztecChallenge.Interfaces.Jumping;
 public class TAPlayer extends Player implements Jumping {
 
     private boolean canPlayerJump;
+    private double crouchCounter = 0;
+    private boolean isCrouching = false;
+
+    private double baseHeight;
 
     public TAPlayer(double x, double y, double width, double height) {
         super(x, y, width, height);
+        baseHeight = height;
         canPlayerJump = true;
     }
 
@@ -19,17 +24,17 @@ public class TAPlayer extends Player implements Jumping {
 
     @Override
     public void onDown() {
-
+        crouch();
     }
 
     @Override
     public void onLeft() {
-        forces.x = -1;
+        //forces.x = -1;
     }
 
     @Override
     public void onRight() {
-        forces.x = 1;
+        //forces.x = 1;
     }
 
     @Override
@@ -59,15 +64,48 @@ public class TAPlayer extends Player implements Jumping {
 
     @Override
     public boolean canJump() {
-        return canPlayerJump;
+        return canPlayerJump && !isCrouching;
     }
 
     @Override
     public void jump() {
-        if (!canPlayerJump) {
+        if (!canJump()) {
             return;
         }
-        canPlayerJump = false;
+        canJump(false);
         forces.y -= 0.5;
     }
+
+    private void crouch() {
+        if (!canJump()) {
+            return;
+        }
+        canJump(false);
+
+        isCrouching = true;
+        setSize(width(), baseHeight / 2);
+        move(0, baseHeight / 2);
+        crouchCounter = 1.5;
+
+    }
+
+    private void uncrouch() {
+        canJump(true);
+        setSize(width(), baseHeight);
+        move(0, - (baseHeight / 2));
+        isCrouching = false;
+    }
+
+    @Override
+    public void tick(double timeDelta) {
+
+        if (isCrouching && crouchCounter > 0) {
+            crouchCounter -= timeDelta;
+        }
+        if (isCrouching && crouchCounter <= 0) {
+            uncrouch();
+        }
+
+    }
+
 }
