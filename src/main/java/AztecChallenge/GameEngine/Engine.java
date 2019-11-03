@@ -1,11 +1,14 @@
 package AztecChallenge.GameEngine;
 
+import AztecChallenge.Interfaces.Damaging;
+import AztecChallenge.Interfaces.Hitboxed;
 import AztecChallenge.Interfaces.Jumping;
 import AztecChallenge.Interfaces.Renderable;
 import AztecChallenge.GameEngine.Platform.Platform;
 import AztecChallenge.GameEngine.Utils.RenderWindow;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
@@ -19,6 +22,7 @@ public abstract class Engine {
 
     protected Player player;
     protected List<Platform> platforms;
+    protected List<GameEntity> entities;
 
     protected double width() {
         return window.width();
@@ -37,16 +41,19 @@ public abstract class Engine {
 
                 String code = e.getCode().toString();
 
-                if (code.equals("W")) {
+                if (e.getCode() == KeyCode.ESCAPE) {
+                    window.close();
+                }
+                else if (code.equals("W")) {
                     player.onUp();
                 }
-                if (code.equals("A")) {
+                else if (code.equals("A")) {
                     player.onLeft();
                 }
-                if (code.equals("S")) {
+                else if (code.equals("S")) {
                     player.onDown();
                 }
-                if (code.equals("D")) {
+                else if (code.equals("D")) {
                     player.onRight();
                 }
             }
@@ -78,6 +85,7 @@ public abstract class Engine {
 
     protected Engine(int width, int height) {
         platforms = new ArrayList<>();
+        entities = new ArrayList<>();
         window = new RenderWindow(width, height);
         lastTimeMeasured = System.currentTimeMillis();
         setEventHandler();
@@ -100,18 +108,25 @@ public abstract class Engine {
         return gravityOn;
     }
 
-    private void handleMovement() {
-
+    private void handleCollisions() {
+        for (GameEntity e : entities) {
+            if (e instanceof Damaging && e.intersects((Hitboxed) player)) {
+                player.onHit();
+            }
+        }
     }
 
-    private void handleCollisions() {
-
+    private void handleGravity(GameEntity e, double timeDelta) {
+        if (!e.affectedByGravity()) {
+            return;
+        }
+        e.move(0, e.getForces().y * timeDelta * 1000);
+        e.setForces(e.getForces().x, Math.min(e.getForces().y += timeDelta, 10));
     }
 
     private void handleGravity(double timeDelta) {
 
-        player.move(0, player.getForces().y * timeDelta * 1000);
-        player.setForces(player.getForces().x, Math.min(player.getForces().y += timeDelta, 10));
+        handleGravity(player, timeDelta);
 
         for (Platform p  : platforms) {
             if (p.intersects(player.hitbox())) {
@@ -124,6 +139,10 @@ public abstract class Engine {
             }
         }
 
+        for (GameEntity e : entities) {
+            handleGravity(e, timeDelta);
+        }
+
     }
 
     private void gravity(double timeDelta) {
@@ -132,22 +151,31 @@ public abstract class Engine {
         }
     }
 
-    private void movePlayer(double timeDelta) {
+    private void moveEntity(GameEntity e, double timeDelta) {
 
-        double dx = player.getForces().x * timeDelta * 100;
-        double dy = player.getForces().y * timeDelta * 100;
+        double dx = e.getForces().x * timeDelta * 100;
+        double dy = e.getForces().y * timeDelta * 100;
 
-        if (gravityOn) {
+        if (gravityOn && e.affectedByGravity()) {
             dy = 0;
         }
 
-        player.move(dx, dy);
+        e.move(dx, dy);
+
+    }
+
+    private void movePlayer(double timeDelta) {
+
+        moveEntity(player, timeDelta);
 
     }
 
     private void move(double timeDelta) {
 
         movePlayer(timeDelta);
+        for (GameEntity entity : entities) {
+            moveEntity(entity, timeDelta);
+        }
 
     }
 
@@ -163,6 +191,28 @@ public abstract class Engine {
 
         window.render(player);
 
+        for (GameEntity e : entities) {
+            if (e instanceof Renderable) {
+                window.render((Renderable) e);
+            }
+        }
+
+    }
+
+    private void removeEntities() {
+
+        double winWidth = window.width();
+        double winHeight = window.height();
+
+        for (GameEntity e : entities) {
+            if (e.x() + e.width() < -10 || e.x() > winWidth + 10) {
+                entities.remove(e);
+                continue;
+            }
+            if (e.y() + e.height() < -10 || e.y() > winHeight + 10) {
+                entities.remove(e);
+            }
+        }
     }
 
     private long measureTimeDelta() {
@@ -193,6 +243,8 @@ public abstract class Engine {
                 double timeDelta = measureTimeDelta() / 1000.f;
                 gravity(timeDelta);
                 move(timeDelta);
+                handleCollisions();
+                removeEntities();
                 tick(timeDelta);
                 render();
             }

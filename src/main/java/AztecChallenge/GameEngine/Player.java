@@ -9,6 +9,8 @@ public abstract class Player extends GameEntity implements Renderable {
 
     public Color color;
 
+    private boolean alive;
+
     public abstract void onUp();
     public abstract void onDown();
     public abstract void onLeft();
@@ -19,11 +21,20 @@ public abstract class Player extends GameEntity implements Renderable {
     public abstract void onLeftRelease();
     public abstract void onRightRelease();
 
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void onHit() {
+        alive = false;
+    }
+
     public abstract void tick(double timeDelta);
 
     public Player(double x, double y, double width, double height) {
         super(x, y, width, height);
         color = new Color(1, 0, 0, 1);
+        alive = true;
     }
 
     @Override

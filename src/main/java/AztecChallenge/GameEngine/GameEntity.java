@@ -7,10 +7,19 @@ import AztecChallenge.GameEngine.Utils.Vector2d;
 public class GameEntity extends Rectangle2d implements Hitboxed {
 
     protected Vector2d forces;
+    private boolean gravity;
 
     public GameEntity(double x, double y, double width, double height) {
         super(x, y, width, height);
         forces = new Vector2d(0, 0);
+    }
+
+    public boolean affectedByGravity() {
+        return gravity;
+    }
+
+    public void affectedByGravity(boolean g) {
+        gravity = g;
     }
 
     @Override

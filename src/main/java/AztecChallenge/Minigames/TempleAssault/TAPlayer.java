@@ -13,6 +13,7 @@ public class TAPlayer extends Player implements Jumping {
 
     public TAPlayer(double x, double y, double width, double height) {
         super(x, y, width, height);
+        affectedByGravity(true);
         baseHeight = height;
         canPlayerJump = true;
     }
