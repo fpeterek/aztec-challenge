@@ -131,7 +131,7 @@ public abstract class Engine {
         handleGravity(player, timeDelta);
 
         for (Platform p : platforms) {
-            if (p.intersects(player.hitbox())) {
+            if (p.hasMass() && p.intersects(player.hitbox())) {
                 player.move(0, p.y() - (player.y() + player.height()));
                 player.setForces(player.getForces().x, 0.01);
                 if (player instanceof Jumping) {

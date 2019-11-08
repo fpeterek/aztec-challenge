@@ -18,6 +18,17 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.base', 'javafx.graphics', 'javafx.media' ]
 }
 
+jar {
+    baseName = 'AztecChallenge'
+    version = '0.1.0'
+    manifest {
+        attributes 'Main-Class': 'AztecChallenge.Main'
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
 dependencies {
 
     //compile group: 'org.openjfx', name: 'javafx-base', version: '13.0.1'
