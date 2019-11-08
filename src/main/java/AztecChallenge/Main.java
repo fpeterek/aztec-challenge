@@ -2,6 +2,7 @@ package AztecChallenge;
 
 import AztecChallenge.GameEngine.Engine;
 import AztecChallenge.Minigames.TempleAssault.TempleAssault;
+import AztecChallenge.Minigames.MountainRange.MountainRange;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -36,6 +37,10 @@ public class Main extends Application {
         runGame(new TempleAssault());
     }
 
+    private void mountainRange() {
+        runGame(new MountainRange());
+    }
+
     private void hideMenu() {
         mainMenu.hide();
     }
@@ -66,7 +71,7 @@ public class Main extends Application {
         buttons = new ArrayList<>();
 
         createButton("Temple Assault", this::templeAssault);
-        createButton("Mountain Range", this::notYetImplemented);
+        createButton("Mountain Range", this::mountainRange);
         createButton("Dungeon ", this::notYetImplemented);
         createButton("Exit", this::exit);
 
@@ -96,8 +101,6 @@ public class Main extends Application {
         mainMenu.setScene(new Scene(root, 800, 600));
         mainMenu.show();
 
-
     }
-
 
 }

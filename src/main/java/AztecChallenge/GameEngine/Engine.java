@@ -23,6 +23,7 @@ public abstract class Engine {
     protected Player player;
     protected List<Platform> platforms;
     protected List<GameEntity> entities;
+    protected List<Renderable> renderables;
 
     protected double width() {
         return window.width();
@@ -86,6 +87,7 @@ public abstract class Engine {
     protected Engine(int width, int height) {
         platforms = new ArrayList<>();
         entities = new ArrayList<>();
+        renderables = new ArrayList<>();
         window = new RenderWindow(width, height);
         lastTimeMeasured = System.currentTimeMillis();
         setEventHandler();
@@ -128,7 +130,7 @@ public abstract class Engine {
 
         handleGravity(player, timeDelta);
 
-        for (Platform p  : platforms) {
+        for (Platform p : platforms) {
             if (p.intersects(player.hitbox())) {
                 player.move(0, p.y() - (player.y() + player.height()));
                 player.setForces(player.getForces().x, 0.01);
@@ -183,6 +185,10 @@ public abstract class Engine {
 
         window.clear();
 
+        for (Renderable r : renderables) {
+            window.render(r);
+        }
+
         for (Platform p : platforms) {
             if (p instanceof Renderable) {
                 window.render((Renderable)p);
@@ -206,10 +212,12 @@ public abstract class Engine {
 
         for (GameEntity e : entities) {
             if (e.x() + e.width() < -10 || e.x() > winWidth + 10) {
+                e.onDelete();
                 entities.remove(e);
                 continue;
             }
             if (e.y() + e.height() < -10 || e.y() > winHeight + 10) {
+                e.onDelete();
                 entities.remove(e);
             }
         }

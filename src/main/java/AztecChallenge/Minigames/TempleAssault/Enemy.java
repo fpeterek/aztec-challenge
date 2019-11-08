@@ -1,26 +1,19 @@
 package AztecChallenge.Minigames.TempleAssault;
 
 import AztecChallenge.GameEngine.GameEntity;
-import AztecChallenge.Interfaces.Damaging;
 import AztecChallenge.Interfaces.Renderable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
-public class Spear extends GameEntity implements Renderable, Damaging {
-
-    private static int spears = 0;
-    public static int spearCount() {
-        return spears;
-    }
+public class Enemy extends GameEntity implements Renderable {
 
     public Color color;
 
-    public Spear(double x, double y, double width, double height) {
+    public Enemy(double x, double y, double width, double height) {
         super(x, y, width, height);
         color = new Color(0.5,0.3, 0.2, 1);
         affectedByGravity(false);
-        ++spears;
     }
 
 
@@ -30,9 +23,13 @@ public class Spear extends GameEntity implements Renderable, Damaging {
         gc.fillRect(x(), y(), width(), height());
     }
 
-    @Override
-    public void onDelete() {
-        --spears;
+    public void tick(double timeDelta) {
+        double mod = 1.0 + timeDelta/3;
+        double w = width();
+        double w2 = w * mod;
+        double h = height() * mod;
+        setSize(w2, h);
+        move((w - w2) * (getForces().x < 0.0 ? 1.0 : -1.0) , 0);
     }
 
 }

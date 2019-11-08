@@ -50,4 +50,8 @@ public class GameEntity extends Rectangle2d implements Hitboxed {
         this.forces.y = fy;
     }
 
+    public void onDelete() {
+
+    }
+
 }
