@@ -42,12 +42,16 @@ public class StairsPlayer extends Player {
 
     @Override
     public void onLeftRelease() {
-        forces.x = 0;
+        if (forces.x < 0) {
+            forces.x = 0;
+        }
     }
 
     @Override
     public void onRightRelease() {
-        forces.x = 0;
+        if (forces.x > 0) {
+            forces.x = 0;
+        }
     }
 
     @Override
