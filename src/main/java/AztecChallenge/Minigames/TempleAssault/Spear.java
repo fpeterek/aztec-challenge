@@ -10,6 +10,9 @@ import javafx.scene.paint.Paint;
 public class Spear extends GameEntity implements Renderable, Damaging {
 
     private static int spears = 0;
+    public static void resetSpearCount() {
+        spears = 0;
+    }
     public static int spearCount() {
         return spears;
     }

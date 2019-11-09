@@ -4,6 +4,7 @@ import AztecChallenge.GameEngine.Engine;
 import AztecChallenge.GameEngine.Platform.Platform;
 import AztecChallenge.GameEngine.Platform.RectanglePlatform;
 import AztecChallenge.GameEngine.Utils.Vector2d;
+import AztecChallenge.Interfaces.Hitboxed;
 import javafx.scene.paint.Color;
 
 public class MountainRange extends Engine {
@@ -60,6 +61,9 @@ public class MountainRange extends Engine {
 
         for (Platform p : platforms) {
             p.move(platformV * timedelta, 0);
+            if (p instanceof EmptyPlatform && player.intersects((Hitboxed) p)) {
+                ((MRPlayer)player).fall();
+            }
             if (p.position().x + p.width() < 0) {
                 platforms.remove(p);
                 spawnPlatform();

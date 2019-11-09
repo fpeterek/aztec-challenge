@@ -6,12 +6,22 @@ import AztecChallenge.Interfaces.Jumping;
 public class MRPlayer extends Player implements Jumping {
 
     private boolean canPlayerJump;
+    private boolean collideWithPlatforms = true;
 
 
     public MRPlayer(double x, double y, double width, double height) {
         super(x, y, width, height);
         affectedByGravity(true);
         canPlayerJump = true;
+    }
+
+    public void fall() {
+        collideWithPlatforms = false;
+    }
+
+    @Override
+    public boolean hasMass() {
+        return collideWithPlatforms;
     }
 
     @Override

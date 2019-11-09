@@ -20,6 +20,8 @@ public class TempleAssault extends Engine {
 
         super(WIDTH, HEIGHT);
 
+        Spear.resetSpearCount();
+
         enableGravity();
         setWindowTitle("Temple Assault");
 

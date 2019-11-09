@@ -131,10 +131,7 @@ public abstract class Engine {
         e.setForces(e.getForces().x, Math.min(e.getForces().y += timeDelta * gForce, 10));
     }
 
-    private void handleGravity(double timeDelta) {
-
-        handleGravity(player, timeDelta);
-
+    private void platformCollision() {
         for (Platform p : platforms) {
             if (p.hasMass() && p.intersects(player.hitbox())) {
                 player.move(0, p.y() - (player.y() + player.height()));
@@ -144,6 +141,15 @@ public abstract class Engine {
                 }
                 break;
             }
+        }
+    }
+
+    private void handleGravity(double timeDelta) {
+
+        handleGravity(player, timeDelta);
+
+        if (player.hasMass()) {
+            platformCollision();
         }
 
         for (GameEntity e : entities) {
