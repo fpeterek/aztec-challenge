@@ -2,6 +2,7 @@ package AztecChallenge.Minigames.MountainRange;
 
 import AztecChallenge.GameEngine.Platform.Platform;
 import AztecChallenge.GameEngine.Platform.RectanglePlatform;
+import javafx.scene.paint.Color;
 
 import java.util.Random;
 
@@ -10,34 +11,37 @@ public class PlatformSpawner {
     private static int platformWidth = 100;
     private static int platformHeight = 30;
 
-    private int width;
-    private int height;
+    private int platformY;
     private int emptyCounter = 0;
     private Random rand;
 
-    public PlatformSpawner(int winWidth, int winHeight) {
+    public PlatformSpawner(int y) {
 
-        width = winWidth;
-        height = winHeight;
+        platformY = y;
         rand = new Random();
 
     }
 
-    private EmptyPlatform emptyPlatform() {
+    public EmptyPlatform emptyPlatform(double x) {
         ++emptyCounter;
-        return new EmptyPlatform(width, 300, platformWidth, platformHeight);
+        EmptyPlatform p = new EmptyPlatform(x, platformY, platformWidth, platformHeight);
+        p.color = new Color(0.7, 0.7, 0.3, 1.0);
+        return p;
     }
 
-    private RectanglePlatform normalPlatform() {
+    public RectanglePlatform normalPlatform(double x) {
         emptyCounter = 0;
-        return new RectanglePlatform(width, 300, platformWidth, platformHeight);
+        RectanglePlatform p = new RectanglePlatform(x, platformY, platformWidth, platformHeight);
+        p.color = new Color(0.7, 0.5, 0.5, 1.0);
+        return p;
     }
 
-    public Platform getPlatform() {
+    public Platform getPlatform(double x) {
+        System.out.println("Get platform");
         if (emptyCounter == 3) {
-            return normalPlatform();
+            return normalPlatform(x);
         }
-        return rand.nextBoolean() ? normalPlatform() : emptyPlatform();
+        return rand.nextBoolean() ? normalPlatform(x) : emptyPlatform(x);
     }
 
 }

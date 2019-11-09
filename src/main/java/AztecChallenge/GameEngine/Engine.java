@@ -19,6 +19,7 @@ public abstract class Engine {
     private RenderWindow window;
     private boolean gravityOn = true;
     private long lastTimeMeasured;
+    private double gForce = 1.0;
 
     protected Player player;
     protected List<Platform> platforms;
@@ -31,6 +32,10 @@ public abstract class Engine {
 
     protected double height() {
         return window.height();
+    }
+
+    protected void setG(double g) {
+        gForce = g;
     }
 
     private void setEventHandler() {
@@ -123,7 +128,7 @@ public abstract class Engine {
             return;
         }
         e.move(0, e.getForces().y * timeDelta * 1000);
-        e.setForces(e.getForces().x, Math.min(e.getForces().y += timeDelta, 10));
+        e.setForces(e.getForces().x, Math.min(e.getForces().y += timeDelta * gForce, 10));
     }
 
     private void handleGravity(double timeDelta) {
