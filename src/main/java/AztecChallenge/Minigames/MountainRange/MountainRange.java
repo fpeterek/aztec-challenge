@@ -10,7 +10,7 @@ public class MountainRange extends Engine {
 
     private static final int WIDTH = 1600;
     private static final int HEIGHT = 900;
-
+    private static final int platformV = -200;
     private PlatformSpawner platformSpawner;
 
     public MountainRange() {
@@ -20,7 +20,7 @@ public class MountainRange extends Engine {
         enableGravity();
         setWindowTitle("Mountain Range");
 
-        setG(0.5);
+        setG(0.8);
 
         RectanglePlatform sky = new RectanglePlatform(0, 0, WIDTH, HEIGHT);
         sky.color = Color.LIGHTBLUE;
@@ -59,7 +59,7 @@ public class MountainRange extends Engine {
         }
 
         for (Platform p : platforms) {
-            p.move(-100 * timedelta, 0);
+            p.move(platformV * timedelta, 0);
             if (p.position().x + p.width() < 0) {
                 platforms.remove(p);
                 spawnPlatform();

@@ -16,7 +16,7 @@ public class MRPlayer extends Player implements Jumping {
 
     @Override
     public void onUp() {
-        jump();
+        jump(0.45);
     }
 
     @Override
@@ -26,12 +26,12 @@ public class MRPlayer extends Player implements Jumping {
 
     @Override
     public void onLeft() {
-        //forces.x = -1;
+        jump(0.3);
     }
 
     @Override
     public void onRight() {
-        //forces.x = 1;
+        jump(0.6);
     }
 
     @Override
@@ -66,11 +66,16 @@ public class MRPlayer extends Player implements Jumping {
 
     @Override
     public void jump() {
+        jump(0.5);
+    }
+
+    @Override
+    public void jump(double force) {
         if (!canJump()) {
             return;
         }
         canJump(false);
-        forces.y -= 0.5;
+        forces.y -= force;
     }
 
     @Override
