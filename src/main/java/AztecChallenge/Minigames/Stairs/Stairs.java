@@ -17,8 +17,8 @@ public class Stairs extends Engine {
     private static final int HEIGHT = 900;
 
     private static final int edge = 100;
-    private static final int boulderChance = 15;
-    private static final int maxBoulders = 5;
+    private static final int boulderChance = 4;
+    private static final int maxBoulders = 3;
 
     private BoulderCreator boulderCreator;
     private Random rand;
@@ -27,10 +27,8 @@ public class Stairs extends Engine {
 
         super(WIDTH, HEIGHT);
 
-        enableGravity();
+        disableGravity();
         setWindowTitle("The Stairs");
-
-        setG(0.8);
 
         RectanglePlatform background = new RectanglePlatform(0, 0, WIDTH, HEIGHT);
         background.color = Color.GRAY;
