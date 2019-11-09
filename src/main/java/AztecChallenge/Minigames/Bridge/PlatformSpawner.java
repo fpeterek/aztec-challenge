@@ -37,7 +37,6 @@ public class PlatformSpawner {
     }
 
     public Platform getPlatform(double x) {
-        System.out.println("Get platform");
         if (emptyCounter == 3) {
             return normalPlatform(x);
         }

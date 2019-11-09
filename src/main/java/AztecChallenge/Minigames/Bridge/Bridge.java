@@ -32,11 +32,8 @@ public class Bridge extends Engine {
             Platform p = platformSpawner.normalPlatform(i * 100);
             platforms.add(p);
         }
-        System.out.println(platforms.size());
 
         player = new BridgePlayer((width() / 2) - (50 / 2), 200, 50, 100);
-
-        // spearCreator = new SpearCreator(new Vector2d(150, 8), new Vector2d(width(), height()), new Vector2d(610, 680));
 
     }
 

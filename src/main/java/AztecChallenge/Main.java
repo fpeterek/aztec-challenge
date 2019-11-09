@@ -3,6 +3,7 @@ package AztecChallenge;
 import AztecChallenge.GameEngine.Engine;
 import AztecChallenge.Minigames.Gauntlet.Gauntlet;
 import AztecChallenge.Minigames.Bridge.Bridge;
+import AztecChallenge.Minigames.Stairs.Stairs;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -41,6 +42,10 @@ public class Main extends Application {
         runGame(new Bridge());
     }
 
+    private void stairs() {
+        runGame(new Stairs());
+    }
+
     private void hideMenu() {
         mainMenu.hide();
     }
@@ -72,7 +77,7 @@ public class Main extends Application {
 
         createButton("The Gauntlet", this::gauntlet);
         createButton("The Bridge", this::bridge);
-        createButton("Dungeon ", this::notYetImplemented);
+        createButton("The Stairs", this::stairs);
         createButton("Exit", this::exit);
 
         vbox.getChildren().addAll(buttons);
