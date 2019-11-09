@@ -55,19 +55,29 @@ public class MountainRange extends Engine {
     @Override
     protected void tick(double timedelta) {
 
-        if (player.position().x > height()) {
+        if (player.position().y > height()) {
             player.onHit();
         }
+
+        boolean intersectsWithEmpty = false;
+        boolean intersectsWithNormal = false;
 
         for (Platform p : platforms) {
             p.move(platformV * timedelta, 0);
             if (p instanceof EmptyPlatform && player.intersects((Hitboxed) p)) {
-                ((MRPlayer)player).fall();
+                intersectsWithEmpty = true;
+            }
+            else if (player.intersects((Hitboxed)p)) {
+                intersectsWithNormal = true;
             }
             if (p.position().x + p.width() < 0) {
                 platforms.remove(p);
                 spawnPlatform();
             }
+        }
+
+        if (intersectsWithEmpty && !intersectsWithNormal) {
+            ((MRPlayer)player).fall();
         }
 
     }

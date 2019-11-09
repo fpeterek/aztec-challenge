@@ -135,7 +135,7 @@ public abstract class Engine {
         for (Platform p : platforms) {
             if (p.hasMass() && p.intersects(player.hitbox())) {
                 player.move(0, p.y() - (player.y() + player.height()));
-                player.setForces(player.getForces().x, 0.01);
+                player.setForces(player.getForces().x, 0.0);
                 if (player instanceof Jumping) {
                     ((Jumping) player).canJump(true);
                 }
