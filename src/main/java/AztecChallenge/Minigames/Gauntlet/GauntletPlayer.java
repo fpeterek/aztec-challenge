@@ -1,9 +1,9 @@
-package AztecChallenge.Minigames.TempleAssault;
+package AztecChallenge.Minigames.Gauntlet;
 
 import AztecChallenge.GameEngine.Player;
 import AztecChallenge.Interfaces.Jumping;
 
-public class TAPlayer extends Player implements Jumping {
+public class GauntletPlayer extends Player implements Jumping {
 
     private boolean canPlayerJump;
     private double crouchCounter = 0;
@@ -11,7 +11,7 @@ public class TAPlayer extends Player implements Jumping {
 
     private double baseHeight;
 
-    public TAPlayer(double x, double y, double width, double height) {
+    public GauntletPlayer(double x, double y, double width, double height) {
         super(x, y, width, height);
         affectedByGravity(true);
         baseHeight = height;

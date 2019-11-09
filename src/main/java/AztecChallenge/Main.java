@@ -1,8 +1,8 @@
 package AztecChallenge;
 
 import AztecChallenge.GameEngine.Engine;
-import AztecChallenge.Minigames.TempleAssault.TempleAssault;
-import AztecChallenge.Minigames.MountainRange.MountainRange;
+import AztecChallenge.Minigames.Gauntlet.Gauntlet;
+import AztecChallenge.Minigames.Bridge.Bridge;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -33,12 +33,12 @@ public class Main extends Application {
         System.out.println("Not yet implemented");
     }
 
-    private void templeAssault() {
-        runGame(new TempleAssault());
+    private void gauntlet() {
+        runGame(new Gauntlet());
     }
 
-    private void mountainRange() {
-        runGame(new MountainRange());
+    private void bridge() {
+        runGame(new Bridge());
     }
 
     private void hideMenu() {
@@ -70,8 +70,8 @@ public class Main extends Application {
 
         buttons = new ArrayList<>();
 
-        createButton("Temple Assault", this::templeAssault);
-        createButton("Mountain Range", this::mountainRange);
+        createButton("The Gauntlet", this::gauntlet);
+        createButton("The Bridge", this::bridge);
         createButton("Dungeon ", this::notYetImplemented);
         createButton("Exit", this::exit);
 

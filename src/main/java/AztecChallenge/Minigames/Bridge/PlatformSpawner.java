@@ -1,4 +1,4 @@
-package AztecChallenge.Minigames.MountainRange;
+package AztecChallenge.Minigames.Bridge;
 
 import AztecChallenge.GameEngine.Platform.Platform;
 import AztecChallenge.GameEngine.Platform.RectanglePlatform;

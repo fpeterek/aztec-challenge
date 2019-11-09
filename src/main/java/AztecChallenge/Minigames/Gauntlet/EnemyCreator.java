@@ -1,4 +1,4 @@
-package AztecChallenge.Minigames.TempleAssault;
+package AztecChallenge.Minigames.Gauntlet;
 
 import AztecChallenge.GameEngine.Utils.Vector2d;
 

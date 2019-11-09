@@ -1,25 +1,24 @@
-package AztecChallenge.Minigames.MountainRange;
+package AztecChallenge.Minigames.Bridge;
 
 import AztecChallenge.GameEngine.Engine;
 import AztecChallenge.GameEngine.Platform.Platform;
 import AztecChallenge.GameEngine.Platform.RectanglePlatform;
-import AztecChallenge.GameEngine.Utils.Vector2d;
 import AztecChallenge.Interfaces.Hitboxed;
 import javafx.scene.paint.Color;
 
-public class MountainRange extends Engine {
+public class Bridge extends Engine {
 
     private static final int WIDTH = 1600;
     private static final int HEIGHT = 900;
     private static final int platformV = -200;
     private PlatformSpawner platformSpawner;
 
-    public MountainRange() {
+    public Bridge() {
 
         super(WIDTH, HEIGHT);
 
         enableGravity();
-        setWindowTitle("Mountain Range");
+        setWindowTitle("The Bridge");
 
         setG(0.8);
 
@@ -35,7 +34,7 @@ public class MountainRange extends Engine {
         }
         System.out.println(platforms.size());
 
-        player = new MRPlayer((width() / 2) - (50 / 2), 200, 50, 100);
+        player = new BridgePlayer((width() / 2) - (50 / 2), 200, 50, 100);
 
         // spearCreator = new SpearCreator(new Vector2d(150, 8), new Vector2d(width(), height()), new Vector2d(610, 680));
 
@@ -77,7 +76,7 @@ public class MountainRange extends Engine {
         }
 
         if (intersectsWithEmpty && !intersectsWithNormal) {
-            ((MRPlayer)player).fall();
+            ((BridgePlayer)player).fall();
         }
 
     }

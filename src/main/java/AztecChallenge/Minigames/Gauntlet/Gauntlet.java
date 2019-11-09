@@ -1,4 +1,4 @@
-package AztecChallenge.Minigames.TempleAssault;
+package AztecChallenge.Minigames.Gauntlet;
 
 import AztecChallenge.GameEngine.Engine;
 import AztecChallenge.GameEngine.GameEntity;
@@ -6,7 +6,7 @@ import AztecChallenge.GameEngine.Platform.RectanglePlatform;
 import AztecChallenge.GameEngine.Utils.Vector2d;
 import javafx.scene.paint.Color;
 
-public class TempleAssault extends Engine {
+public class Gauntlet extends Engine {
 
     private static final int WIDTH = 1600;
     private static final int HEIGHT = 900;
@@ -16,14 +16,14 @@ public class TempleAssault extends Engine {
 
     private double enemySpawnTimer = 0;
 
-    public TempleAssault() {
+    public Gauntlet() {
 
         super(WIDTH, HEIGHT);
 
         Spear.resetSpearCount();
 
         enableGravity();
-        setWindowTitle("Temple Assault");
+        setWindowTitle("The Gauntlet");
 
         RectanglePlatform sky = new RectanglePlatform(0, 0, WIDTH, HEIGHT);
         sky.color = Color.LIGHTBLUE;
@@ -37,7 +37,7 @@ public class TempleAssault extends Engine {
         rp.color = Color.BEIGE;
         platforms.add(rp);
 
-        player = new TAPlayer((width() / 2) - (50 / 2), 500, 50, 100);
+        player = new GauntletPlayer((width() / 2) - (50 / 2), 500, 50, 100);
 
         spearCreator = new SpearCreator(new Vector2d(150, 8), new Vector2d(width(), height()), new Vector2d(610, 680));
         enemyCreator = new EnemyCreator(new Vector2d(width(), height()), new Vector2d(150, 300));

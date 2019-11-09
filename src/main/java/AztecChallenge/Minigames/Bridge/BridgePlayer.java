@@ -1,15 +1,15 @@
-package AztecChallenge.Minigames.MountainRange;
+package AztecChallenge.Minigames.Bridge;
 
 import AztecChallenge.GameEngine.Player;
 import AztecChallenge.Interfaces.Jumping;
 
-public class MRPlayer extends Player implements Jumping {
+public class BridgePlayer extends Player implements Jumping {
 
     private boolean canPlayerJump;
     private boolean collideWithPlatforms = true;
 
 
-    public MRPlayer(double x, double y, double width, double height) {
+    public BridgePlayer(double x, double y, double width, double height) {
         super(x, y, width, height);
         affectedByGravity(true);
         canPlayerJump = true;
