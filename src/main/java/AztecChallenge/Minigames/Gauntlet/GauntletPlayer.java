@@ -124,12 +124,12 @@ public class GauntletPlayer extends Player implements Jumping {
     public void render(GraphicsContext gc) {
         super.render(gc);
         if (!canJump() && !isCrouching) {
-            gc.drawImage(sprite, 5*width(), 0, width(), height(), x(), y(), width(), height());
+            gc.drawImage(sprite, 5*width(), 0, width(), baseHeight, x(), y(), width(), baseHeight);
         }
         else {
             int spriteIndex = (int)(spriteCounter / spriteUpdatePeriod);
             int offset = 1 + (isCrouching ? 2 : 0);
-            gc.drawImage(sprite, offset * height(), 0, width(), height(), x(), y(), width(), height());
+            gc.drawImage(sprite, offset * width(), 0, width(), baseHeight, x(), y()- (baseHeight-height()), width(), baseHeight);
         }
     }
 
