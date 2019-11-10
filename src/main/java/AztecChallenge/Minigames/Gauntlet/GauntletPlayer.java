@@ -129,7 +129,8 @@ public class GauntletPlayer extends Player implements Jumping {
         else {
             int spriteIndex = (int)(spriteCounter / spriteUpdatePeriod);
             int offset = 1 + (isCrouching ? 2 : 0);
-            gc.drawImage(sprite, offset * width(), 0, width(), baseHeight, x(), y()- (baseHeight-height()), width(), baseHeight);
+            int index = spriteIndex + offset;
+            gc.drawImage(sprite, index * width(), 0, width(), baseHeight, x(), y()- (baseHeight-height()), width(), baseHeight);
         }
     }
 
