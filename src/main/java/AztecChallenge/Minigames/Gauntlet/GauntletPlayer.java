@@ -2,17 +2,25 @@ package AztecChallenge.Minigames.Gauntlet;
 
 import AztecChallenge.GameEngine.Player;
 import AztecChallenge.Interfaces.Jumping;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 public class GauntletPlayer extends Player implements Jumping {
+
+    private static final double spriteUpdatePeriod = 0.3;
 
     private boolean canPlayerJump;
     private double crouchCounter = 0;
     private boolean isCrouching = false;
+    private double spriteCounter = 0;
+
+    private Image sprite;
 
     private double baseHeight;
 
     public GauntletPlayer(double x, double y, double width, double height) {
         super(x, y, width, height);
+        sprite = new Image("gauntlet_aztec.png", width * 6, height, true, false);
         affectedByGravity(true);
         baseHeight = height;
         canPlayerJump = true;
@@ -107,6 +115,22 @@ public class GauntletPlayer extends Player implements Jumping {
             uncrouch();
         }
 
+        spriteCounter += timeDelta;
+        spriteCounter %= spriteUpdatePeriod * 2;
+
+    }
+
+    @Override
+    public void render(GraphicsContext gc) {
+        super.render(gc);
+        if (!canJump() && !isCrouching) {
+            gc.drawImage(sprite, 5*width(), 0, width(), height(), x(), y(), width(), height());
+        }
+        else {
+            int spriteIndex = (int)(spriteCounter / spriteUpdatePeriod);
+            int offset = 1 + (isCrouching ? 2 : 0);
+            gc.drawImage(sprite, offset * height(), 0, width(), height(), x(), y(), width(), height());
+        }
     }
 
 }
