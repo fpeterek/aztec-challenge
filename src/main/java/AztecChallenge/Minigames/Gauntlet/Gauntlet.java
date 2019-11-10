@@ -23,6 +23,7 @@ public class Gauntlet extends Engine {
         Spear.resetSpearCount();
 
         enableGravity();
+        setG(0.7);
         setWindowTitle("The Gauntlet");
 
         RectanglePlatform sky = new RectanglePlatform(0, 0, WIDTH, HEIGHT);
@@ -37,9 +38,9 @@ public class Gauntlet extends Engine {
         rp.color = Color.BEIGE;
         platforms.add(rp);
 
-        player = new GauntletPlayer((width() / 2) - (50 / 2), 500, 50, 100);
+        player = new GauntletPlayer((width() / 2) - (50 / 2), 500, 100, 200);
 
-        spearCreator = new SpearCreator(new Vector2d(150, 8), new Vector2d(width(), height()), new Vector2d(610, 680));
+        spearCreator = new SpearCreator(new Vector2d(150, 8), new Vector2d(width(), height()), new Vector2d(530, 650));
         enemyCreator = new EnemyCreator(new Vector2d(width(), height()), new Vector2d(150, 300));
 
     }

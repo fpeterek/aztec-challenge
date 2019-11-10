@@ -3,15 +3,18 @@ package AztecChallenge.Minigames.Gauntlet;
 import AztecChallenge.GameEngine.GameEntity;
 import AztecChallenge.Interfaces.Renderable;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 public class Enemy extends GameEntity implements Renderable {
 
     public Color color;
+    private Image sprite;
 
-    public Enemy(double x, double y, double width, double height) {
+    public Enemy(double x, double y, double width, double height, Image img) {
         super(x, y, width, height);
+        sprite = img;
         color = new Color(0.5,0.3, 0.2, 1);
         affectedByGravity(false);
     }
@@ -21,6 +24,12 @@ public class Enemy extends GameEntity implements Renderable {
     public void render(GraphicsContext gc) {
         gc.setFill(Paint.valueOf(color.toString()));
         gc.fillRect(x(), y(), width(), height());
+        //if (getForces().x < 0) {
+            gc.drawImage(sprite, 0, 0, 24, 30, x(), y(), width(), height());
+
+        //} else {
+        //    gc.drawImage(sprite, 16, 0, 0, 20, x(), y(), width(), height());
+        //}
     }
 
     public void tick(double timeDelta) {
