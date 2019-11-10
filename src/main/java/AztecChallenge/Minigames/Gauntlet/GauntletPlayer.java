@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 
 public class GauntletPlayer extends Player implements Jumping {
 
-    private static final double spriteUpdatePeriod = 0.3;
+    private static final double spriteUpdatePeriod = 0.15;
 
     private boolean canPlayerJump;
     private double crouchCounter = 0;
@@ -122,7 +122,6 @@ public class GauntletPlayer extends Player implements Jumping {
 
     @Override
     public void render(GraphicsContext gc) {
-        super.render(gc);
         if (!canJump() && !isCrouching) {
             gc.drawImage(sprite, 5*width(), 0, width(), baseHeight, x(), y(), width(), baseHeight);
         }

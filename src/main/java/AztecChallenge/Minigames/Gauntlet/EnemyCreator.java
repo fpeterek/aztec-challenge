@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class EnemyCreator {
 
-    private static double fx = 0.6;
+    private static double fx = 1.6;
     private static double fy = 1;
 
     private static double width = 16;
