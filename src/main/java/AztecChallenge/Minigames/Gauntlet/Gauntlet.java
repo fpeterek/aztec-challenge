@@ -31,11 +31,11 @@ public class Gauntlet extends Engine {
         renderables.add(sky);
 
         RectanglePlatform background = new RectanglePlatform(0, 300, WIDTH, 600);
-        background.color = Color.BEIGE;
+        background.color = new Color(0.92, 0.90, 0.39, 1.0);
         renderables.add(background);
 
         RectanglePlatform rp = new RectanglePlatform(0, 700, WIDTH, 200);
-        rp.color = Color.BEIGE;
+        rp.color = new Color(0.92, 0.90, 0.39, 1.0);
         platforms.add(rp);
 
         player = new GauntletPlayer((width() / 2) - (50 / 2), 500, 100, 200);
