@@ -1,6 +1,7 @@
 package AztecChallenge.Minigames.Stairs;
 
 import AztecChallenge.GameEngine.Engine;
+import AztecChallenge.GameEngine.GameEntity;
 import AztecChallenge.GameEngine.Platform.Platform;
 import AztecChallenge.GameEngine.Platform.RectanglePlatform;
 import AztecChallenge.Interfaces.Hitboxed;
@@ -58,6 +59,10 @@ public class Stairs extends Engine {
 
         if (entities.size() < maxBoulders && rand.nextInt(100) < boulderChance) {
             entities.add(boulderCreator.createBoulder());
+        }
+
+        for (GameEntity e : entities) {
+            e.tick(timedelta);
         }
 
     }

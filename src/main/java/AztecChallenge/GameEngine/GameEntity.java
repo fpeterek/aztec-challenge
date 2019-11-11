@@ -54,4 +54,8 @@ public class GameEntity extends Rectangle2d implements Hitboxed {
 
     }
 
+    public void tick(double timedelta) {
+
+    }
+
 }
