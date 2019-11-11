@@ -13,6 +13,10 @@ public class EnemyCreator {
     private static double width = 16;
     private static double height = 20;
 
+    private static int spriteWidth = 24;
+    private static int spriteHeight = 30;
+    private static int spriteMod = 10;
+
     private Image sprite;
     private Vector2d windowSize;
     private Vector2d offset;
@@ -20,7 +24,7 @@ public class EnemyCreator {
 
         windowSize = new Vector2d(windowDim);
         offset = new Vector2d(spawnOffset);
-        sprite = new Image("gauntlet_enemy.png");
+        sprite = new Image("gauntlet_enemy.png", spriteWidth*spriteMod, spriteHeight*spriteMod, true, false);
 
     }
 
