@@ -34,6 +34,9 @@ public class Gauntlet extends Engine {
         background.color = new Color(0.92, 0.90, 0.39, 1.0);
         renderables.add(background);
 
+        Pyramid pyramid = new Pyramid(width(), 300);
+        renderables.add(pyramid);
+
         RectanglePlatform rp = new RectanglePlatform(0, 700, WIDTH, 200);
         rp.color = new Color(0.92, 0.90, 0.39, 1.0);
         platforms.add(rp);
