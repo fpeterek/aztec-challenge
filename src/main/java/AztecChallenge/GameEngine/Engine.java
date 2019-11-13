@@ -1,5 +1,6 @@
 package AztecChallenge.GameEngine;
 
+import AztecChallenge.GameEngine.Utils.GameOverText;
 import AztecChallenge.Interfaces.Damaging;
 import AztecChallenge.Interfaces.Hitboxed;
 import AztecChallenge.Interfaces.Jumping;
@@ -248,6 +249,13 @@ public abstract class Engine {
     protected abstract void tick(double delta);
     protected abstract boolean isRunning();
 
+    private void displayGameOver() {
+
+        GameOverText text = new GameOverText(width() / 2, height() / 2);
+        window.render(text);
+
+    }
+
     public void run() {
 
         measureTimeDelta();
@@ -256,9 +264,6 @@ public abstract class Engine {
 
             @Override
             public void handle(long l) {
-                if (!windowIsOpen() || !isRunning()) {
-                    this.stop();
-                }
                 double timeDelta = measureTimeDelta() / 1000.f;
                 gravity(timeDelta);
                 move(timeDelta);
@@ -266,6 +271,10 @@ public abstract class Engine {
                 removeEntities();
                 tick(timeDelta);
                 render();
+                if (!windowIsOpen() || !isRunning()) {
+                    this.stop();
+                    displayGameOver();
+                }
             }
 
         }.start();
