@@ -1,5 +1,7 @@
 package AztecChallenge;
 
+import AztecChallenge.GameEngine.Config.Config;
+import AztecChallenge.GameEngine.Config.ConfigParser;
 import AztecChallenge.GameEngine.Engine;
 import AztecChallenge.Minigames.Gauntlet.Gauntlet;
 import AztecChallenge.Minigames.Bridge.Bridge;
@@ -21,6 +23,7 @@ public class Main extends Application {
     private VBox vbox;
     private List<Button> buttons;
     private BorderPane root;
+    private Config conf;
 
     public static void main(String[] args) {
         launch(args);
@@ -35,15 +38,15 @@ public class Main extends Application {
     }
 
     private void gauntlet() {
-        runGame(new Gauntlet());
+        runGame(new Gauntlet(conf));
     }
 
     private void bridge() {
-        runGame(new Bridge());
+        runGame(new Bridge(conf));
     }
 
     private void stairs() {
-        runGame(new Stairs());
+        runGame(new Stairs(conf));
     }
 
     private void hideMenu() {
@@ -97,6 +100,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
+        conf = (new ConfigParser()).parseConfig("/config.cfg");
 
         initVBox();
         initRoot();

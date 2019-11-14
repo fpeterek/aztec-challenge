@@ -14,11 +14,11 @@ public class GameOverText implements Renderable {
     private double x;
     private double y;
 
-    public GameOverText(double xPos, double yPos) {
+    public GameOverText(double xPos, double yPos, String font) {
         x = xPos;
         y = yPos;
         text = "Game Over\nPress esc to exit";
-        f = Font.loadFont("lcd_solid.ttf", 50);
+        f = Font.loadFont(getClass().getResourceAsStream(font), 50);
     }
 
     @Override
@@ -27,8 +27,8 @@ public class GameOverText implements Renderable {
         gc.setTextBaseline(VPos.CENTER);
 
         gc.setFont(f);
-        Font newF = new Font(gc.getFont().getFamily(),  50);
-        gc.setFont(newF);
+        //Font newF = new Font(gc.getFont().getFamily(),  50);
+        //gc.setFont(newF);
         gc.setFill(Color.BLACK);
         gc.fillText(text, x, y);
     }

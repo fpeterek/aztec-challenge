@@ -1,5 +1,6 @@
 package AztecChallenge.Minigames.Stairs;
 
+import AztecChallenge.GameEngine.Config.Config;
 import AztecChallenge.GameEngine.Engine;
 import AztecChallenge.GameEngine.GameEntity;
 import AztecChallenge.GameEngine.Platform.Platform;
@@ -14,9 +15,6 @@ import java.util.Random;
 
 public class Stairs extends Engine {
 
-    private static final int WIDTH = 1600;
-    private static final int HEIGHT = 900;
-
     private static final int edge = 100;
     private static final int boulderChance = 4;
     private static final int maxBoulders = 3;
@@ -24,14 +22,14 @@ public class Stairs extends Engine {
     private BoulderCreator boulderCreator;
     private Random rand;
 
-    public Stairs() {
+    public Stairs(Config conf) {
 
-        super(WIDTH, HEIGHT);
+        super(conf);
 
         disableGravity();
         setWindowTitle("The Stairs");
 
-        RectanglePlatform background = new RectanglePlatform(0, 0, WIDTH, HEIGHT);
+        RectanglePlatform background = new RectanglePlatform(0, 0, conf.width, conf.height);
         background.color = Color.GRAY;
         renderables.add(background);
 

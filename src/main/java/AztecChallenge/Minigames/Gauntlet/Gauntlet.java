@@ -1,5 +1,6 @@
 package AztecChallenge.Minigames.Gauntlet;
 
+import AztecChallenge.GameEngine.Config.Config;
 import AztecChallenge.GameEngine.Engine;
 import AztecChallenge.GameEngine.GameEntity;
 import AztecChallenge.GameEngine.Platform.RectanglePlatform;
@@ -8,17 +9,14 @@ import javafx.scene.paint.Color;
 
 public class Gauntlet extends Engine {
 
-    private static final int WIDTH = 1600;
-    private static final int HEIGHT = 900;
-
     private SpearCreator spearCreator;
     private EnemyCreator enemyCreator;
 
     private double enemySpawnTimer = 0;
 
-    public Gauntlet() {
+    public Gauntlet(Config conf) {
 
-        super(WIDTH, HEIGHT);
+        super(conf);
 
         Spear.resetSpearCount();
 
@@ -26,18 +24,18 @@ public class Gauntlet extends Engine {
         setG(0.7);
         setWindowTitle("The Gauntlet");
 
-        RectanglePlatform sky = new RectanglePlatform(0, 0, WIDTH, HEIGHT);
+        RectanglePlatform sky = new RectanglePlatform(0, 0, conf.width, conf.height);
         sky.color = Color.LIGHTBLUE;
         renderables.add(sky);
 
-        RectanglePlatform background = new RectanglePlatform(0, 300, WIDTH, 600);
+        RectanglePlatform background = new RectanglePlatform(0, 300, conf.width, 600);
         background.color = new Color(0.92, 0.90, 0.39, 1.0);
         renderables.add(background);
 
         Pyramid pyramid = new Pyramid(width(), 300);
         renderables.add(pyramid);
 
-        RectanglePlatform rp = new RectanglePlatform(0, 700, WIDTH, 200);
+        RectanglePlatform rp = new RectanglePlatform(0, 700, conf.width, 200);
         rp.color = new Color(0.92, 0.90, 0.39, 1.0);
         platforms.add(rp);
 

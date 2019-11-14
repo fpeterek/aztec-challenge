@@ -1,5 +1,6 @@
 package AztecChallenge.GameEngine;
 
+import AztecChallenge.GameEngine.Config.Config;
 import AztecChallenge.GameEngine.Utils.GameOverText;
 import AztecChallenge.Interfaces.Damaging;
 import AztecChallenge.Interfaces.Hitboxed;
@@ -27,6 +28,8 @@ public abstract class Engine {
     protected List<GameEntity> entities;
     protected List<Renderable> renderables;
 
+    protected Config conf;
+
     protected double width() {
         return window.width();
     }
@@ -51,16 +54,16 @@ public abstract class Engine {
                 if (e.getCode() == KeyCode.ESCAPE) {
                     window.close();
                 }
-                else if (code.equals("W")) {
+                else if (code.equals(conf.up)) {
                     player.onUp();
                 }
-                else if (code.equals("A")) {
+                else if (code.equals(conf.left)) {
                     player.onLeft();
                 }
-                else if (code.equals("S")) {
+                else if (code.equals(conf.down)) {
                     player.onDown();
                 }
-                else if (code.equals("D")) {
+                else if (code.equals(conf.right)) {
                     player.onRight();
                 }
             }
@@ -73,16 +76,16 @@ public abstract class Engine {
 
                 String code = e.getCode().toString();
 
-                if (code.equals("W")) {
+                if (code.equals(conf.up)) {
                     player.onUpRelease();
                 }
-                if (code.equals("A")) {
+                if (code.equals(conf.left)) {
                     player.onLeftRelease();
                 }
-                if (code.equals("S")) {
+                if (code.equals(conf.down)) {
                     player.onDownRelease();
                 }
-                if (code.equals("D")) {
+                if (code.equals(conf.right)) {
                     player.onRightRelease();
                 }
             }
@@ -90,11 +93,12 @@ public abstract class Engine {
 
     }
 
-    protected Engine(int width, int height) {
+    protected Engine(Config config) {
+        conf = config;
         platforms = new ArrayList<>();
         entities = new ArrayList<>();
         renderables = new ArrayList<>();
-        window = new RenderWindow(width, height);
+        window = new RenderWindow(conf.width, conf.height);
         lastTimeMeasured = System.currentTimeMillis();
         setEventHandler();
         window.show();
@@ -251,7 +255,7 @@ public abstract class Engine {
 
     private void displayGameOver() {
 
-        GameOverText text = new GameOverText(width() / 2, height() / 2);
+        GameOverText text = new GameOverText(width() / 2, height() / 2, conf.font);
         window.render(text);
 
     }

@@ -1,5 +1,6 @@
 package AztecChallenge.Minigames.Bridge;
 
+import AztecChallenge.GameEngine.Config.Config;
 import AztecChallenge.GameEngine.Engine;
 import AztecChallenge.GameEngine.Platform.Platform;
 import AztecChallenge.GameEngine.Platform.RectanglePlatform;
@@ -8,27 +9,25 @@ import javafx.scene.paint.Color;
 
 public class Bridge extends Engine {
 
-    private static final int WIDTH = 1600;
-    private static final int HEIGHT = 900;
     private static final int platformV = -200;
     private PlatformSpawner platformSpawner;
 
-    public Bridge() {
+    public Bridge(Config conf) {
 
-        super(WIDTH, HEIGHT);
+        super(conf);
 
         enableGravity();
         setWindowTitle("The Bridge");
 
         setG(0.8);
 
-        RectanglePlatform sky = new RectanglePlatform(0, 0, WIDTH, HEIGHT);
+        RectanglePlatform sky = new RectanglePlatform(0, 0, conf.width, conf.height);
         sky.color = Color.LIGHTBLUE;
         renderables.add(sky);
 
         platformSpawner = new PlatformSpawner(400);
 
-        for (int i = 0; i < (WIDTH / 100) + 1; ++i) {
+        for (int i = 0; i < (conf.width / 100) + 1; ++i) {
             Platform p = platformSpawner.normalPlatform(i * 100);
             platforms.add(p);
         }
