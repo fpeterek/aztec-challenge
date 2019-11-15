@@ -9,8 +9,9 @@ public class Config {
     public final int width;
     public final int height;
     public final String font;
+    public final String logPath;
 
-    public Config(String u, String d, String l, String r, int w, int h, String f) {
+    public Config(String u, String d, String l, String r, int w, int h, String f, String lp) {
         up = u;
         down = d;
         left = l;
@@ -18,6 +19,7 @@ public class Config {
         width = w;
         height = h;
         font = f;
+        logPath = lp;
     }
 
 }

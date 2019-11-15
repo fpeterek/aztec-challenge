@@ -53,12 +53,13 @@ public class ConfigParser {
         String up = map.getOrDefault("up", "W");
         String down = map.getOrDefault("down", "S");
         String left = map.getOrDefault("left", "A");
-        String right = map.getOrDefault("up", "D");
+        String right = map.getOrDefault("right", "D");
         int width = Integer.parseInt(map.getOrDefault("width", "1600"));
         int height = Integer.parseInt(map.getOrDefault("height", "900"));
         String font = map.getOrDefault("font", "/lcd_solid.ttf");
+        String logPath = map.getOrDefault("logPath", "~/Desktop/");
 
-        return new Config(up, down, left, right, width, height, font);
+        return new Config(up, down, left, right, width, height, font, logPath);
 
     }
 

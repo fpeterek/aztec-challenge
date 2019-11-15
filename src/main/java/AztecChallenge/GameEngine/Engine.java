@@ -2,6 +2,7 @@ package AztecChallenge.GameEngine;
 
 import AztecChallenge.GameEngine.Config.Config;
 import AztecChallenge.GameEngine.Utils.GameOverText;
+import AztecChallenge.GameEngine.Utils.KeyLogger;
 import AztecChallenge.Interfaces.Damaging;
 import AztecChallenge.Interfaces.Hitboxed;
 import AztecChallenge.Interfaces.Jumping;
@@ -13,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,7 @@ public abstract class Engine {
     private boolean gravityOn = true;
     private long lastTimeMeasured;
     private double gForce = 1.0;
+    private KeyLogger logger;
 
     protected Player player;
     protected List<Platform> platforms;
@@ -50,6 +53,9 @@ public abstract class Engine {
             {
 
                 String code = e.getCode().toString();
+                if (logger != null) {
+                    logger.keyDown(code);
+                }
 
                 if (e.getCode() == KeyCode.ESCAPE) {
                     window.close();
@@ -75,6 +81,9 @@ public abstract class Engine {
             {
 
                 String code = e.getCode().toString();
+                if (logger != null) {
+                    logger.keyUp(code);
+                }
 
                 if (code.equals(conf.up)) {
                     player.onUpRelease();
@@ -95,6 +104,12 @@ public abstract class Engine {
 
     protected Engine(Config config) {
         conf = config;
+        try {
+            logger = new KeyLogger(config.logPath);
+        } catch (IOException e) {
+            System.out.println("Key logger could not be created");
+            e.printStackTrace();
+        }
         platforms = new ArrayList<>();
         entities = new ArrayList<>();
         renderables = new ArrayList<>();
@@ -277,6 +292,7 @@ public abstract class Engine {
                 render();
                 if (!windowIsOpen() || !isRunning()) {
                     this.stop();
+                    logger.closeStream();
                     displayGameOver();
                 }
             }
