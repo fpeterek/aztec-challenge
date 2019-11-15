@@ -16,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public abstract class Engine {
@@ -24,7 +25,7 @@ public abstract class Engine {
     private boolean gravityOn = true;
     private long lastTimeMeasured;
     private double gForce = 1.0;
-    private KeyLogger logger;
+    private KeyLogger logger = null;
 
     protected Player player;
     protected List<Platform> platforms;
@@ -243,15 +244,18 @@ public abstract class Engine {
         double winWidth = window.width();
         double winHeight = window.height();
 
-        for (GameEntity e : entities) {
+        Iterator<GameEntity> it = entities.iterator();
+
+        while (it.hasNext()) {
+            GameEntity e = it.next();
             if (e.x() + e.width() < -10 || e.x() > winWidth + 10) {
                 e.onDelete();
-                entities.remove(e);
+                it.remove();
                 continue;
             }
             if (e.y() + e.height() < -10 || e.y() > winHeight + 10) {
                 e.onDelete();
-                entities.remove(e);
+                it.remove();
             }
         }
     }
