@@ -104,11 +104,13 @@ public abstract class Engine {
 
     protected Engine(Config config) {
         conf = config;
-        try {
-            logger = new KeyLogger(config.logPath);
-        } catch (IOException e) {
-            System.out.println("Key logger could not be created");
-            e.printStackTrace();
+        if (conf.keyLoggerOn) {
+            try {
+                logger = new KeyLogger(config.logPath);
+            } catch (IOException e) {
+                System.out.println("Key logger could not be created");
+                e.printStackTrace();
+            }
         }
         platforms = new ArrayList<>();
         entities = new ArrayList<>();

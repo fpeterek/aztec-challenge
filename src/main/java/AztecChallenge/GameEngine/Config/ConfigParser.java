@@ -58,8 +58,9 @@ public class ConfigParser {
         int height = Integer.parseInt(map.getOrDefault("height", "900"));
         String font = map.getOrDefault("font", "/lcd_solid.ttf");
         String logPath = map.getOrDefault("logPath", "~/Desktop/");
+        boolean keyLoggerOn = map.getOrDefault("keyLoggerOn", "false").compareToIgnoreCase("true") == 0;
 
-        return new Config(up, down, left, right, width, height, font, logPath);
+        return new Config(up, down, left, right, width, height, font, logPath, keyLoggerOn);
 
     }
 

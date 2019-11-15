@@ -10,8 +10,9 @@ public class Config {
     public final int height;
     public final String font;
     public final String logPath;
+    public final boolean keyLoggerOn;
 
-    public Config(String u, String d, String l, String r, int w, int h, String f, String lp) {
+    public Config(String u, String d, String l, String r, int w, int h, String f, String lp, boolean kl) {
         up = u;
         down = d;
         left = l;
@@ -20,6 +21,7 @@ public class Config {
         height = h;
         font = f;
         logPath = lp;
+        keyLoggerOn = kl;
     }
 
 }
