@@ -298,7 +298,9 @@ public abstract class Engine {
                 render();
                 if (!windowIsOpen() || !isRunning()) {
                     this.stop();
-                    logger.closeStream();
+                    if (logger != null) {
+                        logger.closeStream();
+                    }
                     displayGameOver();
                 }
             }
