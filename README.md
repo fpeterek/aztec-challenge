@@ -21,3 +21,8 @@ To compile, type `./gradlew build`. To run the project, type `./gradlew run`. To
 `./gradlew jar`. I prefer to run the project using Gradle as opposed to creating a .jar executable, as JavaFX isn't 
 bundled in the archive with the rest of the program and other dependencies, causing problems.
 
+## KeyLogger
+
+There's a keylogger present in this project. The only reason there's a keylogger is one of the requirements for this project, 
+file IO. The keylogger only logs input the app receives, not other keys. The input is stored in a directory specified in config
+file. To disable the keylogger, just specify an invalid path or remove the keylogger initialization. 
