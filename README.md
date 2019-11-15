@@ -25,4 +25,4 @@ bundled in the archive with the rest of the program and other dependencies, caus
 
 There's a keylogger present in this project. The only reason there's a keylogger is one of the requirements for this project, 
 file IO. The keylogger only logs input the app receives, not other keys. The input is stored in a directory specified in config
-file. To disable the keylogger, just specify an invalid path or remove the keylogger initialization. 
+file. The keylogger can be disabled/enabled in config and is by default **off**.
