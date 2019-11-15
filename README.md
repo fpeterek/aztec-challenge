@@ -9,13 +9,15 @@ proud of it, I was forced to create it this way.
 
 ## Licensing
 
-All code written by me is open source, licensed under the Apache license. The same applies to any graphics I may have created 
-myself, if I ever create my own graphics. If I steal graphics from the internet, sources will be mentioned.
+All code in this repository was written by me and is licensed under the Apache license. 
+All pixelart was made by me. Fonts were not.
+`lcd-solid` font was downloaded off the internet and `Herculanum` was already present on my computer.
 
 ## Compilation
 
 This project uses Gradle as it's build system. You should, as is the convention in Gradle, utilize the Gradle wrapper.
 
-Compile, type `./gradlew build`. To run the project, type `./gradlew run`. To create an executable .jar archive, type
-`./gradlew jar`.
+To compile, type `./gradlew build`. To run the project, type `./gradlew run`. To create an executable .jar archive, type
+`./gradlew jar`. I prefer to run the project using Gradle as opposed to creating a .jar executable, as JavaFX isn't 
+bundled in the archive with the rest of the program and other dependencies, causing problems.
 
