@@ -9,7 +9,7 @@ proud of it, I was forced to create it this way.
 
 ## Licensing
 
-All code in this repository was written by me and is licensed under the Apache license. 
+All code in this repository was written by me and is licensed under the MIT license. 
 All pixelart was made by me. Fonts were not.
 `lcd-solid` font was downloaded off the internet and `Herculanum` was already present on my computer.
 
